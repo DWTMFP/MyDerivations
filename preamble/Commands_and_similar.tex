@@ -1,0 +1,62 @@
+%fixing spacing after around \left \right
+\NewCommandCopy{\leftold}{\left}
+\NewCommandCopy{\rightold}{\right}
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\leftold}
+\renewcommand{\right}{\aftergroup\egroup\rightold}
+
+%trig functions
+\newcommand{\mytan}[1]{\tan\bracket{#1}}
+\newcommand{\myarctan}[1]{\arctan\bracket{#1}}
+\newcommand{\mysin}[1]{\sin\bracket{#1}}
+\newcommand{\myarcsin}[1]{\arcsin\bracket{#1}}
+\newcommand{\mycos}[1]{\cos\bracket{#1}}
+\newcommand{\myarccos}[1]{\arccos\bracket{#1}}
+
+%math commands
+\newcommand{\bracket}[1]{\left(#1\right)}
+\newcommand{\abs}[1]{\left|#1\right|}
+
+%number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\C}{\mathbb{C}}
+
+
+%for result
+\makeatletter
+\newcommand{\colorboxed}[1]{\fcolorbox{black}{black!0}{\m@th$\displaystyle#1$}}
+\xpatchcmd{\@Aboxed}{\boxed}{\colorboxed}{}{}
+\makeatother
+
+% \newcommand{\resultnoalign}[1]{\implies \boxed{\begin{aligned}#1\end{aligned}}}
+\newcommand{\resultnoalign}[1]{\Aboxed{#1}}
+\newcommand{\resultnoimplies}[1]{\begin{aligned}\resultnoalign{#1}\end{aligned}}
+\newcommand{\result}[1]{\implies \resultnoimplies{#1}}
+\newcommand{\resultinalign}[1]{\implies\resultnoalign{#1}}
+
+%signum function
+\DeclareMathOperator{\sgn}{sgn}
+
+%complex numbers
+\DeclareMathOperator{\conjugate}{conj}
+\newcommand{\conj}[1]{z^{*}} % \bar{z} or z^{*}
+\renewcommand{\i}{i}
+
+%changing the look of the Re and Im function
+\ifbool{fractureCommands}
+{
+    \NewCommandCopy{\Reold}{\Re} %for use later
+    \NewCommandCopy{\Imold}{\Im}
+}
+{
+    \newcommand{\Reold}{\operatorname{Re}} % if fracture isn't wanted
+    \newcommand{\Imold}{\operatorname{Im}} %if fracture isn't wanted
+}
+
+%defines the commmands for real and imaginary part of a complex number, it makes symbol, parentesis, and the argument
+%for use of function without parentesis, use Reold/Imold
+\renewcommand{\Re}[1]{\Reold\left(#1\right)}
+\renewcommand{\Im}[1]{\Imold\left(#1\right)}

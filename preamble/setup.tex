@@ -1,0 +1,21 @@
+\changeContentsname{Table of Contents}
+
+%geometry
+\linespread{1.25} %gives a line spacing of 1.5, don't question it
+\setlength{\parindent}{0mm} %no indentation of a new Paragraph
+\setlength{\parskip}{2.0ex plus 1.0ex minus 0.5ex} %space between paragraphs with stretch
+
+%for changing between ℜ(z)/ℑ(z) and Re(z)/Im(z)
+\newbool{fractureCommands}
+\setbool{fractureCommands}{true}
+
+\hypersetup{ %setup for package hyperref
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+%equation numbering style
+\numberwithin{equation}{section}

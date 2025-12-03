@@ -1,0 +1,67 @@
+\subsection{Complex Number and their conjugate}
+%
+$\forall z\in \C;\ \exists\conj{z} \in \C$, such that: \\
+\begin{gather}
+z = a + b\i \qquad a,b \in \R\\
+\conj{z} = \conjugate\left(z\right) = a - b\i
+\end{gather}
+%
+The real number $a$ is called the \emph{real part} of a complex number $z=a+b\i$ $z \in \C$ $a,b \in \R$, while the real number
+$b$ is called the \emph{imaginary part} of that number. The real part of a complex number $z$ is denoted with
+$\Re{z}$, the imaginary part with $\Im{z}$.
+
+
+The magnitude (or absolut value) $\abs{z}$ of a complex number $z\in\C$ is defined as:
+\begin{gather}
+    \abs{z} = \sqrt{a^2 +b^2} = \sqrt{\bracket{\Re{z}}^2 + \bracket{\Im{z}}^2}\\
+    \implies \abs{z}^2 = a^2 + b^2 = \bracket{\Re{z}}^2 + \bracket{\Im{z}}^2
+\end{gather}
+
+
+%
+\subsubsection{Complex plus Conjugate: $z+\conj{z}$}\label{z_plus_conjz}
+\begin{gather}
+z + \conj{z} = a + b\i + a - b\i = 2 \cdot a = 2 \cdot \Re{z} \\
+\result{z + \conj{z} = 2 \cdot \Re{z}}
+\end{gather}
+
+
+\subsubsection{Complex minus Conjugate: $z-\conj{z}$}\label{z_minus_conjz}
+\begin{gather}
+z - \conj{z} = a + b\i - a + b\i = 2 \cdot b\i = 2\i \cdot \Im{z} \\
+\result{z - \conj{z} = 2\i \cdot \Im{z}} \label{eq:res:z_minus_conjz}
+\end{gather}
+
+
+\subsubsection{Conjugate minus Complex: $\conj{z}-z$}\label{conjz_minus_z}
+Using equation \ref{eq:res:z_minus_conjz}, we get:
+\begin{align}
+\conj{z} - z & = -\bracket{z -\conj{z}} \\
+\resultinalign{\conj{z} - z & = -2\i \cdot \Im{z}}
+\end{align}
+
+
+\subsubsection{Complex times Conjugate: $z\cdot \conj{z}$}\label{z_times_conjz}
+\begin{gather}
+    % \centering
+    z \cdot \conj{z} = (a + b\i) \cdot (a - b\i) = a^2 + a \cdot b\i - a \cdot b\i + b^2 = a^2 + b^2\\
+    \result{z \cdot \conj{z} = \bracket{\Re{z}}^2 + \bracket{\Im{z}}^2 =\abs{z}^2}
+\end{gather}
+
+
+\subsubsection{Complex over Conjugate: $\cfrac{z}{\conj{z}}$}\label{z_over_conjz}
+\begin{align}
+\dfrac{z}{\conj{z}} &= \dfrac{a + b\i}{a - b\i} = \dfrac{a + b\i}{a - b\i} \cdot \dfrac{a + b\i}{a + b\i}
+= \dfrac{a^2 + 2\i \cdot a \cdot b - b^2} {a^2 + b^2} \\
+%
+\resultinalign{\dfrac{z}{\conj{z}} &=
+\dfrac{\bracket{\Re{z}}^2 -\bracket{\Im{z}}^2 + 2\i \cdot \Re{z} \cdot \Im{z}}{\abs{z}^2}}
+\end{align}
+
+
+\subsubsection{Conjugate over Complex: $\cfrac{\conj{z}}{z}$}\label{conjz_over_z}
+\begin{gather}
+\dfrac{\conj{z}}{z} = \dfrac{a - b\i}{a + b\i} = \dfrac{a - b\i}{a + b\i} \cdot \dfrac{a - b\i}{a - b\i}
+= \dfrac{a^2 + b^2 - 2a \cdot b\i}{a^2 + b^2} = 1 -\dfrac{2 \cdot a \cdot b}{a^2 + b^2} \cdot \i \\
+\result{\dfrac{\conj{z}}{z} &= 1 -\i \dfrac{2 \cdot \Re{z} \cdot \Im{z}}{\abs{z}^2}}
+\end{gather}

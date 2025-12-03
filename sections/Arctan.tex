@@ -1,0 +1,129 @@
+\section{Arctangent}
+
+\subsection{$\myarctan{x} + \myarctan{\nicefrac{1}{x}}$}
+\subsubsection{over Triangle}
+Note: Not my observation, nor my explanation, but I do love this\\ \\
+Consider the following right angled triangle $\triangle ABC$\\
+\begin{center}
+\begin{tikzpicture}[thick]
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (3,0);
+    \coordinate (C) at (3,3);
+    
+    \node[anchor=north east] at (A) {$A$};
+    \node[anchor=north west] at (B) {$B$};
+    \node[anchor=south west] at (C) {$C$};
+    
+    \node[right] at (3, 1.5) {$x$};
+    \node[below] at (1.5,0) {$1$};
+    
+    \draw (A) -- (B) -- (C) -- (A)
+    pic[angle radius=4mm, draw=black, "."] {angle = C--B--A}
+    pic[angle radius=9mm, draw=black, "$\alpha$"] {angle = B--A--C}
+    pic[angle radius=9mm, draw=black, "$\beta$"] {angle = A--C--B};
+\end{tikzpicture}
+\end{center}
+
+All angles in a triangle sum up to $\pi \implies \alpha + \beta = \frac{\pi}{2}$
+\begin{gather}
+\begin{aligned}
+    \tan(\alpha) = x &\Leftrightarrow \alpha = \arctan(x)\\
+    \tan(\beta) = \frac{1}{x} &\Leftrightarrow \beta = \myarctan{\frac{1}{x}}
+\end{aligned}\\
+\alpha+\beta = \arctan(x) + \myarctan{\frac{1}{x}} = \frac{\pi}{2}
+\end{gather}
+
+From symmetry we know that $\arctan(-x) = - \arctan(x)$
+\begin{align}
+    \therefore\ \arctan(-x) + \myarctan{-\frac{1}{x}} &= 
+                -\bracket{\arctan(x)+\myarctan{\frac{1}{x}}} \\
+    &= -\frac{\pi}{2} \\
+\end{align}
+%
+\begin{align}
+\therefore\ &\boxed{ 
+    \arctan(x)+\myarctan{\frac{1}{x}} = 
+    \begin{cases}
+            \hfil \frac{\pi}{2} &\mbox{if } x>0 \\
+            -\frac{\pi}{2} &\mbox{if } x<0
+    \end{cases}} \\
+\therefore\ &\boxed{\arctan(x)+\myarctan{\frac{1}{x}} = \sgn(x) \cdot \frac{\pi}{2}}
+\end{align}
+
+\subsubsection{over $\sin$ and $\cos$}
+\paragraph{option 1:}\ \\
+Note: observation by D. J.
+\begin{gather}
+\boxed{x,\alpha,\beta >0}\\
+\alpha+\beta= \frac{\pi}{2} \implies \beta=\frac{\pi}{2}-\alpha \\
+\mbox{let } \tan(\alpha)=\frac{\sin(\alpha)}{\cos(\alpha)}=x \\
+\tan(\beta)=\mytan{\frac{\pi}{2}-\alpha} = \frac{\mysin{\frac{\pi}{2}-\alpha}}{\mycos{\frac{\pi}{2}-\alpha}}
+    = \frac{\cos(\alpha)}{\sin(\alpha)}=\frac{1}{\tan(\alpha)}=\frac{1}{x}\\
+\implies \alpha = \arctan(x), \quad \beta = \frac{\pi}{2} - \alpha = \myarctan{\frac{1}{x}}\\
+\implies \arctan(x) + \myarctan{\frac{1}{x}} = \alpha + \frac{\pi}{2} -\alpha = \frac{\pi}{2}\\
+\tan(-\alpha)=-\tan(\alpha)=-x\\
+\tan(-\beta)=-\tan(\beta)=-\frac{1}{x}\\
+\implies \arctan(-x) =  -\alpha,\quad  \myarctan{-\frac{1}{x}}=-\beta = -\frac{\pi}{2} + \alpha\\
+\implies \arctan(-x) + \myarctan{-\frac{1}{x}} = - \alpha - \frac{\pi}{2} + \alpha = -\frac{\pi}{2} \\
+\\
+\implies \boxed{
+\arctan(x) + \myarctan{\frac{1}{x}} = \begin{cases}
+    \hfil \frac{\pi}{2} &\mbox{für } x>0 \\
+   - \frac{\pi}{2} &\mbox{für } x<0
+\end{cases}
+}
+\end{gather}
+
+\paragraph{option 2:}\ \\
+Note: observation by D. J.
+\begin{gather}
+\myarctan x + \myarctan{\frac{1}{x}} = \ ? \\
+\mytan\alpha = \frac{\mysin\alpha}{\mycos\alpha} = x\\
+\mytan{\beta} = \frac{1}{x} = \frac{1}{\mytan\alpha} = \frac{\mycos{\alpha}}{\mysin{\alpha}}
+ = \frac{\mysin{\frac{\pi}{2}-\alpha}}{\mycos{\frac{\pi}{2}-\alpha}}
+ = \frac{\mysin{\beta}}{\mycos{\beta}} \\
+ \implies \beta = \frac{\pi}{2} - \alpha \implies \alpha + \beta = \frac{\pi}{2} \\
+ \implies \mytan{\beta} = \mytan{\frac{\pi}{2} - \alpha} = \frac{1}{\mytan{\alpha}} = \frac{1}{x} \\
+ \implies  \myarctan{x} + \myarctan{\frac{1}{x}} = \cancel{\alpha} + \frac{\pi}{2} - \cancel{\alpha} = \frac{\pi}{2} \\
+\end{gather}
+%
+From symmetry we know that $\myarctan{-x} = - \myarctan{x}$
+\begin{gather}
+    \begin{aligned}
+    \therefore\ \myarctan{-x} + \myarctan{-\frac{1}{x}} &= 
+                -\bracket{\myarctan{x}+\myarctan{\frac{1}{x}}} \\
+    &= -\frac{\pi}{2} 
+    \end{aligned} \\
+\therefore\ \boxed{ 
+    \myarctan{x}+\myarctan{\frac{1}{x}} = 
+    \begin{cases}
+            \hfil \frac{\pi}{2} &\mbox{if } x>0 \\
+            -\frac{\pi}{2} &\mbox{if } x<0
+    \end{cases}}
+\end{gather}
+
+
+\subsubsection{over derivative and limit}
+%
+\begin{gather}
+f(x) = \myarctan{x} + \myarctan{\frac{1}{x}}\quad D_f=\R\setminus \{0\}\\
+f'(x) = \frac{1}{1+x^2} + \frac{1}{1+\bracket{\dfrac{1}{x}}^2} \cdot \bracket{-\frac{1}{x^2}}
+= \frac{1}{1+x^2} - \frac{1}{x^2 + 1} = 0
+\end{gather}
+If $f'(x)=0$ then f(x) has at least one constant value\\
+Since 0 is excluded, we should check for values above, and below zero, because, this could be the only
+jump in the function, because it's continuous everywhere else (in $\R^+$ and in $\R^-$):
+
+Case 1: $x>0$
+\[
+    f(1) = \myarctan{1} + \myarctan{\frac{1}{1}} = \frac{\pi}{4} + \frac{\pi}{4} = \frac{\pi}{2}
+\]
+
+Case 2: $x<0$
+\[
+    f(-1) = \myarctan{-1} + \myarctan{\frac{1}{-1}} = -\frac{\pi}{4} - \frac{\pi}{4} = -\frac{\pi}{2}
+\]
+
+\[
+\therefore \boxed{f(x)=\begin{cases} \hfil \frac{\pi}{2} &\mbox{für }x>0 \\ -\frac{\pi}{2} &\mbox{für } x<0\end{cases}}
+\]
