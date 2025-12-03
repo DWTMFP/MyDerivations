@@ -26,16 +26,27 @@
 
 
 %for result
+%Using Aboxed, because of it's ability to align with the outer align env
 \makeatletter
 \newcommand{\colorboxed}[1]{\fcolorbox{black}{black!0}{\m@th$\displaystyle#1$}}
 \xpatchcmd{\@Aboxed}{\boxed}{\colorboxed}{}{}
 \makeatother
 
-% \newcommand{\resultnoalign}[1]{\implies \boxed{\begin{aligned}#1\end{aligned}}}
-\newcommand{\resultnoalign}[1]{\Aboxed{#1}}
-\newcommand{\resultnoimplies}[1]{\begin{aligned}\resultnoalign{#1}\end{aligned}}
-\newcommand{\result}[1]{\implies \resultnoimplies{#1}}
-\newcommand{\resultinalign}[1]{\implies\resultnoalign{#1}}
+
+\makeatletter
+\newcommand{\resultnoimplies}[1]{
+    \ifthenelse{\equal{\@currenvir}{align}} %if in align env
+    {\Aboxed{#1}} %don't use aligned, to avoid errors
+    {\begin{aligned}\Aboxed{#1}\end{aligned}} %otherwise do
+}
+\makeatother
+%for writing an aligned env inside you need to put that in curly braces (definitely works for cases, don't know about the others)
+\newcommand{\result}[2][noalign]{ %with optional arg, default being noalign
+\ifthenelse{\equal{#1}{noalign}} %without optional arg
+    {\implies \resultnoimplies{#2}} % don't align
+    {\implies \resultnoimplies{&#2}} % with do
+}
+
 
 %signum function
 \DeclareMathOperator{\sgn}{sgn}
