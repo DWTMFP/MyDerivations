@@ -6,7 +6,7 @@ The signum function yields the sign of a number:
     +1 &\mbox{if }x>0 \\
     \hfil0 &\mbox{if }x=0 \\
     -1 &\mbox{if }x<0
-\end{cases}
+\end{cases} \label{eq:sgn_def}
 \]
 
 \subsection{link to $\abs{x}$}
@@ -20,31 +20,42 @@ The signum function yields the sign of a number:
     \end{cases}\\
     &= \begin{cases} +1 &\mbox{if }x>0 \\ -1 &\mbox{if }x<0 \end{cases}\\
     \end{aligned}\\
-\result{\abs{x}' = \sgnfn{x} = \frac{x}{\abs{x}}  \mbox{ if } x \neq 0} \label{eq:res:absPrime}
+\result{\abs{x}' = \sgnfn{x} = \frac{x}{\abs{x}}  \mbox{ if } x \neq 0} \label{eq:res:derivative_abs}
 \end{gather}
 
 \subsection{Reciprocal of $\sgnfn{x}$}
+From definition of the $\sgn$ function (see: \ref{eq:sgn_def}) follows:
 \begin{gather}
-    \sgnfn{x} = \begin{cases}
-        +1 &\mbox{if }x>0 \\ \hfil 0 &\mbox{if }x=0 \\ -1 &\mbox{if }x<0 
-    \end{cases} \\
-    %
-\result{\frac{1}{\sgnfn{x}} = {\begin{cases}
-    +1 &\mbox{if }x>0 \\ \hfil 0 &\mbox{if }x=0 \\ -1 &\mbox{if }x<0
-    \end{cases}}
- = \sgnfn{x}} \label{eq:res:reciprocal_sgn}
+    \frac{1}{\sgnfn{x}} = {
+        \begin{cases} 
+            +1 &\mbox{if }x>0 \\
+            \hfil 0 &\mbox{if }x=0 \\ 
+            -1 &\mbox{if }x<0 
+    \end{cases}}\\
+\result{\frac{1}{\sgnfn{x}} = \sgnfn{x}} \label{eq:res:reciprocal_sgn}
+\end{gather}
+Using equation \ref{eq:res:derivative_abs}
+\begin{gather}
+\result{\sgnfn{x} = \frac{x}{\abs{x}} = \frac{\abs{x}}{x}} \label{eq:sgn_abs_and_x}
 \end{gather}
 
 \subsection{$x$ and $\sgnfn{x}$}
-From equations \ref{eq:res:absPrime} and \ref{eq:res:reciprocal_sgn} we get:
+From equation \ref{eq:sgn_abs_and_x} we get:
+%
 \begin{align}
-    \resultnoimplies{&x=\sgnfn{x} \cdot \abs{x}}\\
-    \resultnoimplies{&\abs{x}=\sgnfn{x} \cdot x}
+    \resultnoimplies{\abs{x}=\sgnfn{x} \cdot x}\\
+    \resultnoimplies{x=\sgnfn{x} \cdot \abs{x}}
 \end{align}
 
-\subsection{Fun connnection with $x \cdot \sqrt{\frac{a}{x^2}}$}
+\subsection{Fun connnection with $x \cdot \sqrt{\dfrac{a}{x^2}}$}
 \begin{gather}
-    x \cdot \sqrt{\frac{a}{x^2}} = x \cdot \sqrt{\frac{a}{x^2} \cdot \frac{x^2}{x^2}}
-    = x \cdot \sqrt{a} \cdot \sqrt{\frac{1}{x^2}}=\frac{x}{\sqrt{x}}\sqrt{a}
+    x \cdot \sqrt{\frac{a}{x^2}} = x \cdot \sqrt{\frac{a}{\cancel{x^2}} \cdot \frac{\cancel{x^2}}{x^2}}
+    = x \cdot \sqrt{a} \cdot \sqrt{\frac{1}{x^2}} = \frac{x}{\sqrt{x^2}}\sqrt{a} = \frac{x}{\abs{x}}\sqrt{a}\\
     \result{x \cdot \sqrt{\frac{a}{x^2}} = \sgnfn{x} \cdot \sqrt{a}}
+\end{gather}
+
+\subsection{Similarly $\sqrt{\dfrac{a}{x^2}}$}
+\begin{gather}
+\sqrt{\frac{a}{x^2}} = \sqrt{\frac{1}{x^2}} \cdot \sqrt{a} = \frac{1}{\sqrt{x^2}} \sqrt{a}\\
+\result{\sqrt{\frac{a}{x^2}} = \frac{1}{\abs{x}}\sqrt{a}}
 \end{gather}
