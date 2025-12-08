@@ -1,3 +1,8 @@
+%Math operators
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\conjugate}{conj}
+
+
 %fixing spacing after around \left \right
 \NewCommandCopy{\leftold}{\left}
 \NewCommandCopy{\rightold}{\right}
@@ -14,7 +19,11 @@
 
 %math commands
 \newcommand{\bracket}[1]{\left(#1\right)}
+
 \newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\sgnfn}[1]{\sgn\bracket{#1}}
 
 %number sets
 \newcommand{\N}{\mathbb{N}}
@@ -44,15 +53,13 @@
 \newcommand{\result}[2][noalign]{ %with optional arg, default being noalign
 \ifthenelse{\equal{#1}{noalign}} %without optional arg
     {\implies \resultnoimplies{#2}} % don't align
-    {\implies \resultnoimplies{&#2}} % with do
+    {\implies \resultnoimplies{&#2}} % with arg do
 }
 
 
 %signum function
-\DeclareMathOperator{\sgn}{sgn}
 
 %complex numbers
-\DeclareMathOperator{\conjugate}{conj}
 \newcommand{\conj}[1]{z^{*}} % \bar{z} or z^{*}
 \renewcommand{\i}{i}
 
