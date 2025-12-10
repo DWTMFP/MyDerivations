@@ -3,13 +3,9 @@ This section was inspired by the video of blackpenredpen about a similar triangl
 Consider the following triangle, with $a,b,c,x \in \R^+$:\\
 \begin{center}
 \begin{tikzpicture}[thick]
-    \coordinate (A) at (0,0);
-    \coordinate (B) at (3,0);
-    \coordinate (C) at (3,3);
-    
-    \node[anchor=north east] at (A) {$A$};
-    \node[anchor=north west] at (B) {$B$};
-    \node[anchor=south west] at (C) {$C$};
+    \coordinate (A) at (0,0) node[anchor=north east] at (A) {$A$};
+    \coordinate (B) at (3,0) node[anchor=north west] at (B) {$B$};
+    \coordinate (C) at (3,3) node[anchor=south west] at (C) {$C$};
     
     \draw (A) -- (B) node [midway, below] {$\myln{b\cdot x}$}; %Text under AB
     \draw (B) -- (C) node [midway, right] {$\myln{a\cdot x}$}; %Text to the right BC
@@ -52,23 +48,23 @@ Inserting back into the original equation:
 \implies \myln{x} &= \myln{\frac{c}{ab}} \pm \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}
 \end{aligned}
 \end{gather}
-Only the positive root is important, since we know that (Domain of $\ln$):
-\[
-\myln{\frac{c}{ab}} \pm \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}} > 0
-\]
-Also we know that:
-\[
-\myln{ax} + \myln{bx} > \myln{cx}
-\]
-And since $\myln{x}$ is strictly increasing also:
-\begin{gather}
-    \myln{a} + \myln{b} > \myln{c}\\
-    0 > \myln{c} - \myln{a} \myln{b}\\
-    \myln{\frac{c}{ab}} < 0
-\end{gather}
+% Only the positive root is important, since we know that (Domain of $\ln$):
+% \[
+% \myln{\frac{c}{ab}} \pm \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}} > 0
+% \]
+% Also we know that:
+% \[
+% \myln{ax} + \myln{bx} > \myln{cx}
+% \]
+% And since $\myln{x}$ is strictly increasing also:
+% \begin{gather}
+%     \myln{a} + \myln{b} > \myln{c}\\
+%     0 > \myln{c} - \myln{a} \myln{b}\\
+%     \myln{\frac{c}{ab}} < 0
+% \end{gather}
 
-So to add up to something positive $\displaystyle \pm \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}$ must be positive.
-\begin{gather}
-    \implies \myln{x} = \myln{\frac{c}{ab}} + \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}\\
-    \result{x = \frac{c}{ab} \cdot \e^{\sqrt{2\myln{\dfrac{a}{c}}\myln{\dfrac{b}{c}}}}}
-\end{gather}
+% So to add up to something positive $\displaystyle \pm \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}$ must be positive.
+% \begin{gather}
+%     \implies \myln{x} = \myln{\frac{c}{ab}} + \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}\\
+%     \result{x = \frac{c}{ab} \cdot \e^{\sqrt{2\myln{\dfrac{a}{c}}\myln{\dfrac{b}{c}}}}}
+% \end{gather}

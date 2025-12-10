@@ -6,18 +6,14 @@ Note: Not my observation, nor my explanation, but I do love this\\ \\
 Consider the following right angled triangle $\triangle ABC$\\
 \begin{center}
 \begin{tikzpicture}[thick]
-    \coordinate (A) at (0,0);
-    \coordinate (B) at (3,0);
-    \coordinate (C) at (3,3);
+    \coordinate (A) at (0,0) node[anchor=north east] at (A) {$A$};
+    \coordinate (B) at (3,0) node[anchor=north west] at (B) {$B$};
+    \coordinate (C) at (3,3) node[anchor=south west] at (C) {$C$};
     
-    \node[anchor=north east] at (A) {$A$};
-    \node[anchor=north west] at (B) {$B$};
-    \node[anchor=south west] at (C) {$C$};
-    
-    \node[right] at (3, 1.5) {$x$};
-    \node[below] at (1.5,0) {$1$};
-    
-    \draw (A) -- (B) -- (C) -- (A)
+    \draw (A) -- (B) node [midway, below] {$1$}; %from A to B, with 1 under the line
+    \draw (B) -- (C) node [midway, right] {$x$}; %from B to C, with x to the right
+
+    \draw (A) -- (C)
     pic[angle radius=4mm, draw=black, "."] {angle = C--B--A}
     pic[angle radius=9mm, draw=black, "$\alpha$"] {angle = B--A--C}
     pic[angle radius=9mm, draw=black, "$\beta$"] {angle = A--C--B};
