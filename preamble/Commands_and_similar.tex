@@ -9,16 +9,23 @@
 \renewcommand{\left}{\mathopen{}\mathclose\bgroup\leftold}
 \renewcommand{\right}{\aftergroup\egroup\rightold}
 
-%trig functions
-\newcommand{\mytan}[1]{\tan\bracket{#1}}
-\newcommand{\myarctan}[1]{\arctan\bracket{#1}}
-\newcommand{\mysin}[1]{\sin\bracket{#1}}
-\newcommand{\myarcsin}[1]{\arcsin\bracket{#1}}
-\newcommand{\mycos}[1]{\cos\bracket{#1}}
-\newcommand{\myarccos}[1]{\arccos\bracket{#1}}
+%trig and other functions
+\newcommand{\mytan}[2][]{\tan\bracket[#1]{#2}}
+\newcommand{\myarctan}[2][]{\arctan\bracket[#1]{#2}}
+\newcommand{\mysin}[2][]{\sin\bracket[#1]{#2}}
+\newcommand{\myarcsin}[2][]{\arcsin\bracket[#1]{#2}}
+\newcommand{\mycos}[2][]{\cos\bracket[#1]{#2}}
+\newcommand{\myarccos}[2][]{\arccos\bracket[#1]{#2}}
+\newcommand{\myln}[2][]{\ln\bracket[#1]{#2}}
 
 %math commands
-\newcommand{\bracket}[1]{\left(#1\right)}
+\newcommand{\bracket}[2][]{
+    \ifthenelse{\equal{#1}{s}} %if optional arg = s
+    {\left[#2\right]} %use square Brackets
+    {\ifthenelse{\equal{#1}{c}} % if optional arg = c
+        {\left\{#2\right\}} % use curly braces
+        {\left(#2\right)}}    %otherwise (no / unvalid optional arg) use normal brackets
+}
 
 \newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
@@ -33,6 +40,7 @@
 \newcommand{\I}{\mathbb{I}}
 \newcommand{\C}{\mathbb{C}}
 
+\newcommand{\e}{\ensuremath{\mathrm{e}}}
 
 %for result
 %Using Aboxed, because of it's ability to align with the outer align env

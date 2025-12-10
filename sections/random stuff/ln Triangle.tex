@@ -1,0 +1,74 @@
+\subsection{ln Triangle}
+This section was inspired by the video of blackpenredpen about a similar triangle.\\
+Consider the following triangle, with $a,b,c,x \in \R^+$:\\
+\begin{center}
+\begin{tikzpicture}[thick]
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (3,0);
+    \coordinate (C) at (3,3);
+    
+    \node[anchor=north east] at (A) {$A$};
+    \node[anchor=north west] at (B) {$B$};
+    \node[anchor=south west] at (C) {$C$};
+    
+    \draw (A) -- (B) node [midway, below] {$\myln{b\cdot x}$}; %Text under AB
+    \draw (B) -- (C) node [midway, right] {$\myln{a\cdot x}$}; %Text to the right BC
+    \draw (A) -- (C) node [midway, above, sloped] {$\myln{c\cdot x}$}; %Text over AC
+    
+    \draw pic[angle radius=4mm, draw=black, "."] {angle = C--B--A}; %Right angle
+\end{tikzpicture}
+\end{center}
+We want to find $x$:
+\begin{gather}
+\myln{ax}^2 + \myln{bx}^2 = \myln{cx}^2\\
+\myln{ax}^2 + \myln{bx}^2 - \myln{cx}^2 = 0\\
+\bracket[s]{\myln{a} + \myln{x}}^2
++ \bracket[s]{\myln{bx} + \myln{cx}} \cdot \bracket[s]{\myln{bx} - \myln{cx}} = 0 \\
+\myln{a}^2 + 2\myln{a}\myln{x} + \myln{x}^2 + \myln{bcx^2}\myln{\frac{b}{c}} = 0
+\end{gather}
+%
+Let's focus on $\displaystyle \myln{bcx^2}\myln{\frac{b}{c}}$:
+\begin{gather}
+\myln{bcx^2}\myln{\frac{b}{c}} = \bracket[s]{\myln{bc} + \myln{x^2}}\myln{\frac{b}{c}}
+    = \myln{bc}\myln{\frac{b}{c}} + \ln{\frac{b}{c}}\myln{x^2}
+\end{gather}
+%
+Inserting back into the original equation:
+\begin{gather}
+\myln{a}^2 + 2\myln{a}\myln{x} + \myln{x}^2 + \myln{bc}\myln{\frac{b}{c}} + \myln{\frac{b}{c}}\myln{x^2} = 0 \\
+\myln{x}^2 + 2\myln{a}\myln{x} + 2\myln{\frac{b}{c}}\myln{x} + \myln{bc}\myln{\frac{b}{c}} + \myln{a}^2 = 0\\
+\myln{x}^2 + 2\bracket[s]{\myln{a}+\myln{\frac{b}{c}}}\myln{x} + \myln{bc}\myln{\frac{b}{c}} + \myln{a}^2 = 0\\
+\myln{x}^2 + 2\myln{\frac{ab}{c}}\myln{x} + \myln{bc}\myln{\frac{b}{c}} + \myln{a}^2 = 0\\
+\begin{aligned}
+\myln{x} &= \frac{-2\myln{\frac{ab}{c}} 
+    \pm \sqrt{\bracket{2\myln{\frac{ab}{c}}}^2-4(\myln{a}^2+\myln{bc}\myln{\frac{b}{c}})}}{2} \\
+&= \myln{\frac{c}{ab}}
+    \pm  \sqrt{\myln{\frac{ab}{c}}^2-\bracket{\myln{a}^2+\myln{bc}\myln{\frac{b}{c}}}}\\
+&= \myln{\frac{c}{ab}} \pm \sqrt{\bracket{\myln{\frac{ab}{c}}-\myln{a}} 
+    \cdot \bracket{\myln{\frac{ab}{c}}+ \myln{a}} - \myln{bc}\myln{\frac{b}{c}}} \\
+&= \myln{\frac{c}{ab}} \pm \sqrt{\myln{\frac{b}{c}}\myln{\frac{a^2b}{c}} - \myln{bc}\myln{\frac{b}{c}}} \\
+&= \myln{\frac{c}{ab}} \pm \sqrt{\bracket{\myln{\frac{a^2b}{c}} - \myln{bc}} \myln{\frac{b}{c}}}\\
+&= \myln{\frac{c}{ab}} \pm \sqrt{\myln{\frac{a^2}{c^2}}\myln{\frac{b}{c}}}\\
+\implies \myln{x} &= \myln{\frac{c}{ab}} \pm \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}
+\end{aligned}
+\end{gather}
+Only the positive root is important, since we know that (Domain of $\ln$):
+\[
+\myln{\frac{c}{ab}} \pm \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}} > 0
+\]
+Also we know that:
+\[
+\myln{ax} + \myln{bx} > \myln{cx}
+\]
+And since $\myln{x}$ is strictly increasing also:
+\begin{gather}
+    \myln{a} + \myln{b} > \myln{c}\\
+    0 > \myln{c} - \myln{a} \myln{b}\\
+    \myln{\frac{c}{ab}} < 0
+\end{gather}
+
+So to add up to something positive $\displaystyle \pm \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}$ must be positive.
+\begin{gather}
+    \implies \myln{x} = \myln{\frac{c}{ab}} + \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}\\
+    \result{x = \frac{c}{ab} \cdot \e^{\sqrt{2\myln{\dfrac{a}{c}}\myln{\dfrac{b}{c}}}}}
+\end{gather}
