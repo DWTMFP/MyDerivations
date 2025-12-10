@@ -18,6 +18,12 @@
 \newcommand{\myarccos}[2][]{\arccos\bracket[#1]{#2}}
 \newcommand{\myln}[2][]{\ln\bracket[#1]{#2}}
 
+
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\sgnfn}[1]{\sgn\bracket{#1}}
+
 %math commands
 \newcommand{\bracket}[2][]{
     \ifthenelse{\equal{#1}{s}} %if optional arg = s
@@ -26,11 +32,6 @@
         {\left\{#2\right\}} % use curly braces
         {\left(#2\right)}}    %otherwise (no / unvalid optional arg) use normal brackets
 }
-
-\newcommand{\abs}[1]{\left|#1\right|}
-\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
-\newcommand{\sgnfn}[1]{\sgn\bracket{#1}}
 
 %number sets
 \newcommand{\N}{\mathbb{N}}
@@ -42,30 +43,38 @@
 
 \newcommand{\e}{\ensuremath{\mathrm{e}}}
 
-%for result
-%Using Aboxed, because of it's ability to align with the outer align env
+
+%Result Command
+% for writing an aligned env inside you need to put that in curly braces 
+% (definitely works for cases, don't know about the others)
 \makeatletter
+%Using Aboxed, because of it's ability to align with the outer align env
 \newcommand{\colorboxed}[1]{\fcolorbox{black}{black!0}{\m@th$\displaystyle#1$}}
 \xpatchcmd{\@Aboxed}{\boxed}{\colorboxed}{}{}
-\makeatother
 
+%Result Command Definition
+\newcommand{\@noalign}{noalign} %just there to avoid typos in the result command definitions
+\newcommand{\@resultBoxCommand}[1]{\Aboxed{#1}} %for easily changing the command, which creates the box
+\newcommand{\@impliesresult}{\implies} %for theoretically switching to something else, or for removing the arrow
 
-\makeatletter
-\newcommand{\resultnoimplies}[1]{
+%This Command just checks if the result is inside an align env and then puts the arg inside a box
+\newcommand{\@resultBaseCommand}[1]{
     \ifthenelse{\equal{\@currenvir}{align}} %if in align env
-    {\Aboxed{#1}} %don't use aligned, to avoid errors
-    {\begin{aligned}\Aboxed{#1}\end{aligned}} %otherwise do
+    {\@resultBoxCommand{#1}} %don't use aligned, to avoid errors
+    {\ifthenelse{\equal{\@currenvir}{aligned}} %same for aligned
+    {\@resultBoxCommand{#1}} 
+    {\begin{aligned}\Aboxed{#1}\end{aligned}}} %otherwise do
 }
+
+%The result without the Box, also decides, if it aligns with the outer stuff or not
+\newcommand{\resultnoimplies}[2][\@noalign]{
+    \ifthenelse{\equal{#1}{\@noalign}} %without optional arg
+    {\@resultBaseCommand{#2}} % don't align
+    {\@resultBaseCommand{&#2}} % with arg do
+}
+% The normal result command with implies
+\newcommand{\result}[2][\@noalign]{\@impliesresult \resultnoimplies[#1]{#2}} %with optional arg, default being noalign
 \makeatother
-%for writing an aligned env inside you need to put that in curly braces (definitely works for cases, don't know about the others)
-\newcommand{\result}[2][noalign]{ %with optional arg, default being noalign
-\ifthenelse{\equal{#1}{noalign}} %without optional arg
-    {\implies \resultnoimplies{#2}} % don't align
-    {\implies \resultnoimplies{&#2}} % with arg do
-}
-
-
-%signum function
 
 %complex numbers
 \newcommand{\conj}[1]{z^{*}} % \bar{z} or z^{*}

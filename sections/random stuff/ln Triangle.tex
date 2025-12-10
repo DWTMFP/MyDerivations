@@ -48,24 +48,22 @@ Inserting back into the original equation:
 \implies \myln{x} &= \myln{\frac{c}{ab}} \pm \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}
 \end{aligned}
 \end{gather}
-Somehow the negative root get's excluded, or at least restricted but I don't know how yet.
-% Only the positive root is important, since we know that (Domain of $\ln$):
-% \[
-% \myln{\frac{c}{ab}} \pm \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}} > 0
-% \]
-% Also we know that:
-% \[
-% \myln{ax} + \myln{bx} > \myln{cx}
-% \]
-% And since $\myln{x}$ is strictly increasing also:
-% \begin{gather}
-%     \myln{a} + \myln{b} > \myln{c}\\
-%     0 > \myln{c} - \myln{a} \myln{b}\\
-%     \myln{\frac{c}{ab}} < 0
-% \end{gather}
 
-% So to add up to something positive $\displaystyle \pm \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}$ must be positive.
-% \begin{gather}
-%     \implies \myln{x} = \myln{\frac{c}{ab}} + \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}\\
-%     \result{x = \frac{c}{ab} \cdot \e^{\sqrt{2\myln{\dfrac{a}{c}}\myln{\dfrac{b}{c}}}}}
-% \end{gather}
+From the triangle inequality we know that:
+\begin{gather}
+    \begin{aligned}
+        \myln{ax} + \myln{bx} &> \myln{cx}\\
+        \myln{a} + \myln{x} + \myln{b} + \cancel{\myln{x}} &> \myln{c} + \cancel{\myln{x}}
+    \end{aligned}\\
+    \begin{aligned}
+        \myln{x} &> \myln{c} - \myln{a} - \myln{b}\\
+        \myln{x} &> \myln{\frac{c}{ab}} > \myln{\frac{c}{ab}} - \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}
+    \end{aligned}\\
+    \begin{aligned}
+        \result[a]{\myln{x} \neq \myln{\frac{c}{ab}} - \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}}\\
+        \therefore\ \resultnoimplies{&\myln{x} = \myln{\frac{c}{ab}} + \sqrt{2\myln{\frac{a}{c}}\myln{\frac{b}{c}}}}\\
+        \result[align]{x = \frac{c}{ab} \cdot \e^{\sqrt{2\myln{\dfrac{a}{c}}\myln{\dfrac{b}{c}}}}}\\
+    \end{aligned}
+\end{gather}
+
+Maybe there are some more restrictions to a, b and c but otherwise that should be it.
