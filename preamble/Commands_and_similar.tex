@@ -30,7 +30,9 @@
     {\left[#2\right]} %use square Brackets
     {\ifthenelse{\equal{#1}{c}} % if optional arg = c
         {\left\{#2\right\}} % use curly braces
-        {\left(#2\right)}}    %otherwise (no / unvalid optional arg) use normal brackets
+        {\ifthenelse{\equal{#1}{a}} %if optional arg = a
+        {\abs{#1}}          % use abs
+        {\left(#2\right)}}}    %otherwise (no / unvalid optional arg) use normal brackets
 }
 
 %number sets
