@@ -1,0 +1,54 @@
+\subsection{$\mysin{x}$, $\mycos{x}$ in terms of $\mytan{x}$ and connections between the inverse functions}
+
+\subsubsection{$\mycos{x}$}
+$\mycos{x} = \sqrt{\mycos[power=2]{x}}$, because 
+$\sqrt{\mycos[power=2]{x}} = \mycos[bracket=absolut value]{x} = \mycos{x}$, because
+$\mycos{x} = \mycos{-x} \implies \mycos[bracket=abs]{x} = \mycos{x}$\\ 
+\begin{align}
+        \mycos{x} = \frac{1}{\frac{1}{\mycos{x}}} &= \frac{1}{\sqrt{\frac{1}{\mycos[power=2]{x}}}} =
+        \frac{1}{\sqrt{\frac{\mysin[power=2]{x} + \mycos[power=2]{x}}{\mycos[power=2]{x}}}}\\
+        \result[align]{\mycos{x} = \frac{1}{\sqrt{1+\mytan[power=2]{x}}}} \label{eq:res:cos_in_terms_of_tan} \\
+        \result[align]{\mycos{\myarctan{x}} = \frac{1}{\sqrt{x^2+1}}} \label{eq:res:cos_of_arctan}
+\end{align}
+
+\subsubsection{$\mysin{x}$}
+Using equation \ref{eq:res:cos_in_terms_of_tan} we get:
+\begin{align}
+    \mysin{x} = \frac{\mysin{x}}{\mycos{x}}  \cdot \mycos{x} 
+    &= \mytan{x} \cdot \mycos{x}
+    = \mytan{x} \cdot \frac{1}{\sqrt{1+\mytan[power=2]{x}}}\\
+    \result[align]{\mysin{x} = \frac{\mytan x}{\sqrt{1 + \mytan[power=2]{x}}}} \label{eq:res:sin_in_terms_of_tan}\\
+    \result[align]{\mysin{\myarctan{x}} = \frac{x}{\sqrt{x^2 + 1}}} \label{eq:res:sin_of_arctan}
+\end{align}
+
+Consider the following right-angled triangle with $x \in\ ]0;1[$:
+\begin{center}
+\begin{tikzpicture}[thick]
+    \coordinate (A) at (0,0) node[anchor=north east] at (A) {$A$};
+    \coordinate (B) at (3,0) node[anchor=north west] at (B) {$B$};
+    \coordinate (C) at (3,3) node[anchor=south west] at (C) {$C$};
+    
+    \draw (A) -- (B) node [midway, below] {$\sqrt{1-x^2}$}; %Text under AB
+    \draw (B) -- (C) node [midway, right] {$x$}; %Text to the right BC
+    \draw (A) -- (C) node [midway, above, sloped] {$1$}; %Text over AC
+    
+    \draw pic[angle radius=4mm, draw=black, "."] {angle = C--B--A}; %Right angle
+    \draw pic[angle radius=8mm, draw=black, "$\alpha$"] {angle = B--A--C};
+    \draw pic[angle radius=8mm, draw=black, "$\beta$"] {angle = A--C--B};
+\end{tikzpicture}
+\end{center}
+\begin{gather}
+    \begin{aligned}
+        \mysin{\alpha} = x &\implies  \alpha = \myarcsin{x}\\
+        \mytan{\alpha} = \frac{x}{\sqrt{1-x^2}} &\implies \alpha = \myarctan{\frac{x}{\sqrt{1-x^2}}}\\
+    \end{aligned}\\
+    \result{\myarcsin{x} = \myarctan{\frac{x}{\sqrt{1-x^2}}}}
+\end{gather}
+\begin{gather}
+    \begin{aligned}
+        \mycos{\beta} = \mycos{\frac{\pi}{2} - \alpha} = x &\implies \frac{\pi}{2} - \alpha = \myarccos{x}\\
+            &\implies \alpha = \frac{\pi}{2} - \myarccos{x}\\
+        \mytan{\alpha} = \frac{x}{\sqrt{1-x^2}} &\implies \alpha = \myarctan{\frac{x}{\sqrt{1-x^2}}}
+    \end{aligned}\\
+    \result{\myarccos{x} = \frac{\pi}{2}-\myarctan{\frac{x}{\sqrt{1-x^2}}}}
+\end{gather}

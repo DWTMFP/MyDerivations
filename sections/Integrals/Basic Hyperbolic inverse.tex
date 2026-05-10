@@ -1,0 +1,21 @@
+\subsection{$\int \nicefrac{1}{\mycosh{x}} \d x$}
+\begin{gather}
+    \int \frac{1}{\mycosh{x}}\, \d x
+    = \int \frac{1}{\dfrac{\e^x+\e^{-x}}{2}} \d x =
+    \int \frac{2}{\e^x + \e^{-x}} \d x \\
+    = \int \frac{2\e^x}{\e^{2x}+1} \d x = 2 \int \frac{\e^x}{\e^{2x}+1} \d x\\
+    \mathrm{let\ } u = \e^x \implies  \d u = \e^x \d x\\
+    2 \int \frac{1}{u^2 +1} \d u = 2 \myarctan{u} \plusC \\
+    \result{\int \frac{1}{\mycosh{x}} \d x= 2 \myarctan{\e^x} +C}
+\end{gather}
+
+\subsection{$\int \nicefrac{1}{\mysinh{x}} \d x$}
+\begin{gather}
+    \int \frac{1}{\mysinh{x}} \d x = \int \frac{1}{\dfrac{\e^x-\e^{-x}}{2}} \d x\\
+    = \int \frac{2\e^x}{\e^{2x}-1} \d x\\
+    \mathrm{let\ } u= \e^x \implies \d u = \e^x \d x\\
+    2 \int \frac{1}{u^2-1} \d u = 2 \int -\frac{1}{1-u^2} \d u = -2 \int \frac{1}{1-u^2} \d u\\
+    = -\cancel{2} \cdot \cancel{\frac{1}{2 \sqrt{1}}}\myln[bracket=a]{\frac{1 + u}{1 - u}}
+    = \myln[bracket=a]{\frac{1- u}{1+ u} }\\
+    \result[]{\int \frac{1}{\mysinh{x}} \d x = \myln[bracket=a]{\frac{1-\e^x}{1+\e^x} }}
+\end{gather}

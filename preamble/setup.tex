@@ -20,3 +20,25 @@
 
 %equation numbering style
 \numberwithin{equation}{section}
+
+
+%pgfkeys 
+%for more info: https://tex.stackexchange.com/questions/34312/how-to-create-a-command-with-key-values
+\pgfkeys{
+    /myfunctions/.is family, /myfunctions,
+    %options for the function commands (wich bracket type, for some, wich power)
+    default/.style = {bracket = normal, power = ,}, %default values
+    bracket/.style = {bracketTypes/#1/.get = \bracketType}, 
+    power/.estore in = \power, %estore = expand store, expands the value before storing it for use later
+    function/.estore in = \function,
+    %dictionary for bracket types
+    /myfunctions/bracketTypes/.cd,
+        square/.initial = s,
+        s/.initial = s,
+        curly/.initial = c,
+        c/.initial = c,
+        absolut value/.initial = a,
+        abs/.initial = a,
+        a/.initial = a,
+        normal/.initial = ,
+}

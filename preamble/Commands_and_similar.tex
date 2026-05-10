@@ -1,6 +1,9 @@
 %Math operators
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\conjugate}{conj}
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
 
 
 %fixing spacing after around \left \right
@@ -10,30 +13,54 @@
 \renewcommand{\right}{\aftergroup\egroup\rightold}
 
 %trig and other functions
-\newcommand{\mytan}[2][]{\tan\bracket[#1]{#2}}
-\newcommand{\myarctan}[2][]{\arctan\bracket[#1]{#2}}
-\newcommand{\mysin}[2][]{\sin\bracket[#1]{#2}}
-\newcommand{\myarcsin}[2][]{\arcsin\bracket[#1]{#2}}
-\newcommand{\mycos}[2][]{\cos\bracket[#1]{#2}}
-\newcommand{\myarccos}[2][]{\arccos\bracket[#1]{#2}}
-\newcommand{\myln}[2][]{\ln\bracket[#1]{#2}}
+\makeatletter
+\newcommand{\@functionBaseCommand}[2][]{%
+    \pgfkeys{/myfunctions, default, #1}%
+    \function \ifthenelse{\equal{\power}{}}% if power argument is not given
+    {}% don't add power
+    {^{\power}}% else add power
+    \bracket[\bracketType]{#2}
+}
+
+%trig
+\newcommand{\mytan}[2][]{\@functionBaseCommand[#1, function = \tan]{#2}}
+\newcommand{\myarctan}[2][]{\@functionBaseCommand[#1, function = \arctan]{#2}}
+\newcommand{\mysin}[2][]{\@functionBaseCommand[#1, function = \sin]{#2}}
+\newcommand{\myarcsin}[2][]{\@functionBaseCommand[#1, function = \arcsin]{#2}}
+\newcommand{\mycos}[2][]{\@functionBaseCommand[#1, function = \cos]{#2}}
+\newcommand{\myarccos}[2][]{\@functionBaseCommand[#1, function = \arccos]{#2}}
+%hyperbolic trig
+\newcommand{\mytanh}[2][]{\@functionBaseCommand[#1, function = \tanh]{#2}}
+\newcommand{\myartanh}[2][]{\@functionBaseCommand[#1, function = \artanh]{#2}}
+\newcommand{\mysinh}[2][]{\@functionBaseCommand[#1, function = \sinh]{#2}}
+\newcommand{\myarsinh}[2][]{\@functionBaseCommand[#1, function = \arsinh]{#2}}
+\newcommand{\mycosh}[2][]{\@functionBaseCommand[#1, function = \cosh]{#2}}
+\newcommand{\myarcosh}[2][]{\@functionBaseCommand[#1, function = \arcosh]{#2}}
+%other
+\newcommand{\myln}[2][]{\@functionBaseCommand[#1, function = \ln]{#2}}
+\makeatother
 
 
+%math commands
 \newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
-\newcommand{\sgnfn}[1]{\sgn\bracket{#1}}
+\newcommand{\sgnfn}[2][]{\sgn\bracket[#1]{#2}}
 
-%math commands
+
 \newcommand{\bracket}[2][]{
+    % \@LRcommand[#1]{#2}
+%
     \ifthenelse{\equal{#1}{s}} %if optional arg = s
     {\left[#2\right]} %use square Brackets
     {\ifthenelse{\equal{#1}{c}} % if optional arg = c
         {\left\{#2\right\}} % use curly braces
         {\ifthenelse{\equal{#1}{a}} %if optional arg = a
-        {\abs{#1}}          % use abs
+        {\abs{#2}}          % use abs
         {\left(#2\right)}}}    %otherwise (no / unvalid optional arg) use normal brackets
 }
+
+
 
 %number sets
 \newcommand{\N}{\mathbb{N}}
@@ -44,6 +71,13 @@
 \newcommand{\C}{\mathbb{C}}
 
 \newcommand{\e}{\ensuremath{\mathrm{e}}}
+\NewCommandCopy{\dold}{\d}
+\renewcommand{\d}[1]{\,\mathrm{d}#1}
+\newcommand{\plusC}[1][]{
+    \ifthenelse{\equal{#1}{}}
+    {+C \quad C\in\R}
+    {C_{#1} \quad C_{#1}\in\R}
+}
 
 
 %Result Command
@@ -65,7 +99,9 @@
     {\@resultBoxCommand{#1}} %don't use aligned, to avoid errors
     {\ifthenelse{\equal{\@currenvir}{aligned}} %same for aligned
     {\@resultBoxCommand{#1}} 
-    {\begin{aligned}\Aboxed{#1}\end{aligned}}} %otherwise do
+    {\ifthenelse{\equal{\@currenvir}{split}} % same for split
+    {\@resultBoxCommand{#1}}
+    {\begin{aligned}\@resultBoxCommand{#1}\end{aligned}}}} %otherwise do
 }
 
 %The result without the Box, also decides, if it aligns with the outer stuff or not
